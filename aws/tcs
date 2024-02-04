@@ -1,6 +1,5 @@
 Changing owners to files/folders:
 chown username filename : to change the owner for any file.
-chgrp group name filename: to change the group of a file.
 chown owner name : group name filename : to change the user and group at a time.
 chown user:group * : to change user and group at a time for all files.
 chown user:group file1 file2 file3 : to change the user and group for ,ultiple files at a time.

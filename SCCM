@@ -1,0 +1,213 @@
+Section 1: Fundamentals and Architecture
+1. What is SCCM and what are its primary functions?
+
+SCCM is a systems management software by Microsoft used to manage large groups of computers. Primary functions include:
+
+Software deployment: Installing, updating, and uninstalling software.
+
+Patch management: Deploying software updates.
+
+Operating System Deployment (OSD): Imaging and deploying OS on new or existing devices.
+
+Inventory management: Collecting hardware/software info.
+
+Compliance settings: Ensuring systems meet configured standards.
+
+Remote control and endpoint protection.
+
+Example: A company uses SCCM to push Office updates to all company PCs on a scheduled basis.
+
+2. Explain the architecture of SCCM and its main components.
+
+SCCM architecture typically involves:
+
+Site Server: Core component running site services.
+
+Site Database: Stores site data (usually SQL Server).
+
+Management Point (MP): Handles client communication.
+
+Distribution Point (DP): Stores and distributes software packages.
+
+Reporting Point: Runs reporting services.
+
+Fallback Status Point (FSP): Tracks client installation issues.
+
+Clients: Agents installed on managed devices.
+
+Example: When a client requests software, it contacts the MP to get instructions and downloads content from the DP.
+
+3. What is a site system in SCCM? Name some key site system roles.
+
+A site system is a server that hosts one or more SCCM roles.
+
+Key roles:
+
+Management Point (MP): Communication point for clients.
+
+Distribution Point (DP): Content distribution.
+
+Software Update Point (SUP): Integration with WSUS for patching.
+
+Reporting Services Point (RSP): Enables reporting.
+
+Fallback Status Point (FSP): Helps track client install issues.
+
+4. How does SCCM handle client communication and management?
+
+Clients communicate with MP via HTTP/HTTPS to receive policy, send status, and report inventory. They download content from DPs. Clients periodically check-in for policies, software updates, and tasks.
+
+5. What are the different site types in SCCM?
+
+Primary Site: Manages clients and handles full SCCM functions.
+
+Secondary Site: Used in remote locations for content distribution; requires a parent primary site.
+
+Central Administration Site (CAS): Manages multiple primary sites in a hierarchy (used in very large environments).
+
+Section 2: Client Management
+6. How do you deploy the SCCM client to devices?
+
+Methods:
+
+Client push installation: From console, SCCM pushes client installer.
+
+Group Policy Object (GPO): Using Active Directory startup scripts.
+
+Manual installation: Running CCMSetup.exe on device.
+
+Software Update-based installation: Deploy client as an update.
+
+Provisioning package: Used for Windows Autopilot or OSD.
+
+Example: Client push is commonly used by admins to quickly install clients on all discovered devices.
+
+7. What are the prerequisites for SCCM client installation?
+
+Network connectivity to SCCM site.
+
+Firewall ports (80, 443) open for communication.
+
+Admin rights on target device.
+
+Windows OS supported by SCCM version.
+
+Required Windows components installed.
+
+8. How do you troubleshoot SCCM client installation failures?
+
+Check log files (ccmsetup.log, client.msi.log) on target device.
+
+Verify network access and firewall rules.
+
+Confirm DNS and AD settings.
+
+Ensure no previous incomplete client installs.
+
+Use Client Push Installation wizard to retry.
+
+9. How do you verify client health and compliance?
+
+Use built-in Client Health Dashboard in SCCM or run compliance reports. Check client activity logs like ClientIDManagerStartup.log and LocationServices.log.
+
+10. What are client settings, and how do you configure them?
+
+Client settings define behavior such as hardware inventory schedules, power management, software update settings, and user experience. Configured in SCCM console under Administration > Client Settings, and deployed to collections.
+
+Section 3: Software Deployment and Updates
+11. How does software deployment work in SCCM?
+
+Admin creates an application/package, distributes content to DPs, then deploys to collections as required or available. Clients receive policy, evaluate deployments, and install software accordingly.
+
+12. What are collections in SCCM and how are they used?
+
+Collections are logical groups of devices or users used to target deployments. Collections can be static (manually updated) or dynamic (query-based).
+
+Example: A “Sales Department” collection can be targeted for installing sales-specific applications.
+
+13. Explain the difference between required and available deployments.
+
+Required: Mandatory installation; users get forced installs.
+
+Available: Optional; users can choose to install from Software Center.
+
+14. How do you deploy software updates using SCCM?
+
+Configure SUP role, synchronize updates from WSUS, create Software Update Groups (SUG), deploy updates to device collections with maintenance windows and deadlines.
+
+15. What is Software Update Point (SUP) and how is it configured?
+
+SUP is a site system role integrating SCCM with WSUS to provide patch management. Configured by adding the SUP role, specifying products/classifications, and syncing updates.
+
+Section 4: Operating System Deployment (OSD)
+16. What is Operating System Deployment in SCCM?
+
+OSD automates OS installation or upgrade on client devices using task sequences.
+
+17. Explain the steps involved in creating and deploying a task sequence.
+
+Create boot image (WinPE).
+
+Capture or import OS image.
+
+Create task sequence with steps: format disk, apply OS, install drivers, software, run scripts.
+
+Deploy task sequence to a collection.
+
+PXE boot or media boot clients to trigger deployment.
+
+18. How do you capture and deploy a custom OS image?
+
+Use a capture task sequence to create a .wim file from a reference computer, import image into SCCM, then deploy via task sequence.
+
+19. What is PXE boot, and how is it used in OSD?
+
+PXE boot enables a device to boot over the network to WinPE boot image to start OSD without physical media.
+
+20. How do you troubleshoot failed OSD deployments?
+
+Check logs like smsts.log on client (WinPE environment), verify network/PXE service availability, validate boot image and driver packages.
+
+Section 5: Reporting and Compliance
+21. How do you generate reports in SCCM?
+
+Use SQL Server Reporting Services (SSRS) integrated with SCCM, run built-in or custom reports from Monitoring > Reporting.
+
+22. What is Configuration Baseline and Configuration Item in SCCM?
+
+Configuration Item (CI): Defines settings to check on clients.
+
+Configuration Baseline (CB): Group of CIs deployed to collections to assess compliance.
+
+23. How does SCCM ensure compliance management?
+
+By deploying CBs and monitoring compliance results, SCCM can enforce or report non-compliant systems.
+
+24. Explain the role of Desired Configuration Management (DCM) in SCCM.
+
+DCM evaluates if clients meet defined configurations and settings, helps automate remediation and compliance reporting.
+
+25. How do you monitor deployment status and client activity?
+
+Use SCCM console monitoring nodes, deployment status messages, and reporting for success/failure stats.
+
+Section 6: Security and Maintenance
+26. How do you secure SCCM infrastructure and client communications?
+
+Use HTTPS for client communication, configure PKI certificates, enable role-based access control (RBAC), and secure SQL Server.
+
+27. What are maintenance windows in SCCM?
+
+Scheduled timeframes when clients can perform installations or reboots to minimize user disruption.
+
+28. How do you perform SCCM backup and recovery?
+
+Use SCCM Backup Site Server Maintenance Task or manual SQL Server backups; recovery involves reinstalling site server and restoring database.
+
+29. What is the role of boundaries and boundary groups in SCCM?
+
+Boundaries define network locations (IP, AD sites) to associate clients with site systems. Boundary groups group boundaries and define content sources and site assignment.
+
+30. How do you handle SCCM site server and database maintenance?
+
+Regularly monitor SQL health, rebuild indexes, archive logs, maintain disk space, and update site server with latest patches.

@@ -1,0 +1,179 @@
+
+1. What is Microsoft Entra ID (formerly Azure Active Directory), and how is it different from on-prem AD?
+
+Microsoft Entra ID is Microsoft’s cloud-based identity and access management service, providing authentication and authorization for cloud resources. Unlike traditional on-premises Active Directory which manages domain-joined devices and users within a corporate network, Entra ID is designed for cloud-native applications, SaaS, and hybrid environments. It supports modern protocols like OAuth, OpenID Connect, and SAML, and enables Single Sign-On (SSO) across cloud apps.
+
+2. What are the core components of Entra ID?
+
+Users and Groups: Store user identities and group memberships.
+
+Applications: Register and manage SaaS and custom apps integrated with Entra ID.
+
+Roles and Administrators: Role-based access control (RBAC) to delegate admin rights.
+
+Conditional Access Policies: Control access based on device, location, user risk, etc.
+
+Identity Protection: Risk-based conditional access and remediation.
+
+Devices: Manage registered or joined devices for access and compliance.
+
+3. What types of identities are supported in Microsoft Entra ID?
+
+Cloud-only identities: Accounts created directly in Entra ID.
+
+Synchronized identities: On-prem AD users synchronized via Azure AD Connect.
+
+Federated identities: Users authenticated via third-party identity providers using federation protocols.
+
+Guest (B2B) users: External users invited to collaborate.
+
+Customer (B2C) identities: External consumers with customized sign-up/sign-in.
+
+4. What is the difference between a tenant and a directory in Entra ID?
+
+In Entra ID, a tenant represents a dedicated instance of the directory service for an organization. It is the overarching container that holds the directory, which includes all users, groups, applications, and policies. Essentially, tenant and directory often refer to the same entity, but the tenant is the full subscription instance while directory focuses on the identity store.
+
+5. What is an Entra ID license, and what are the differences between Free, P1, and P2 plans?
+
+Free: Basic identity and access management, single sign-on for up to 10 apps, limited security features.
+
+P1: Adds advanced management like Conditional Access, dynamic groups, self-service password reset for on-prem synced users, and Microsoft Identity Manager.
+
+P2: Includes all P1 features plus Identity Protection, Privileged Identity Management (PIM), risk-based conditional access, and access reviews.
+
+Section 2: User and Group Management
+6. How do you create and manage users in Entra ID?
+
+Users can be created manually via the Microsoft 365 Admin Center or Azure Portal, via PowerShell, or synchronized from on-prem AD using Azure AD Connect. Management includes resetting passwords, assigning licenses, configuring MFA, and setting user properties.
+
+7. What are the differences between cloud-only and hybrid users?
+
+Cloud-only: Accounts exist only in Entra ID with no on-prem counterpart.
+
+Hybrid: Accounts synchronized from on-premises Active Directory via Azure AD Connect; passwords can be synchronized or federated. Hybrid users enable seamless access to both on-prem and cloud resources.
+
+8. What are dynamic groups in Entra ID, and how do they differ from assigned groups?
+
+Dynamic groups: Membership is automatically managed based on user/device attributes using rules (e.g., department equals ‘Sales’).
+
+Assigned groups: Membership is manually managed by admins or users.
+
+Dynamic groups reduce admin overhead and enable automated policy targeting.
+
+9. How can you delegate administrative access without giving full admin rights?
+
+Using Role-Based Access Control (RBAC), Entra ID provides granular admin roles (e.g., User Administrator, Password Administrator) that limit what tasks a user can perform. Roles can be assigned scoped to the whole tenant or specific administrative units for finer control.
+
+10. What is the difference between Microsoft 365 Groups, Security Groups, and Distribution Lists?
+
+Microsoft 365 Groups: Collaborative groups with shared mailbox, calendar, SharePoint site, and Teams integration.
+
+Security Groups: Used to assign permissions to resources like SharePoint sites or applications.
+
+Distribution Lists: Email-only groups for sending emails to multiple users; no security permissions.
+
+Section 3: Authentication and Security
+11. What is Conditional Access in Entra ID and how does it work?
+
+Conditional Access enforces policies that control access to resources based on conditions like user risk level, device compliance, location, or app sensitivity. For example, requiring MFA when accessing from an untrusted network.
+
+12. How do you enforce Multi-Factor Authentication (MFA)?
+
+MFA can be enabled globally or per user, or through Conditional Access policies that require additional verification factors (phone call, text, app notification) during sign-in.
+
+13. What are Identity Protection risk levels and how do they influence policy decisions?
+
+Identity Protection detects suspicious activity and assigns risk levels (low, medium, high). Policies can automatically block access or require remediation like MFA based on risk.
+
+14. Explain the difference between password protection and self-service password reset (SSPR).
+
+Password Protection: Enforces banned passwords and password complexity.
+
+SSPR: Allows users to reset or unlock their passwords securely without admin intervention.
+
+15. What is Pass-through Authentication and how does it differ from Seamless SSO or Federation?
+
+Pass-through Authentication: Users authenticate directly against on-prem AD via a connector; passwords are not stored in the cloud.
+
+Seamless SSO: Automatically signs users in when on corporate devices and network.
+
+Federation: Uses a federated identity provider (like ADFS) to authenticate users.
+
+Section 4: Microsoft 365 Admin Center
+16. What tasks can be performed in the Microsoft 365 Admin Center?
+
+User and group management, license assignment, service health monitoring, billing, security and compliance management, device management, and reports.
+
+17. How do you assign and manage licenses in Microsoft 365?
+
+Licenses are assigned to users individually or in bulk via the Admin Center or PowerShell. Groups can be assigned licenses dynamically (group-based licensing).
+
+18. What admin roles are available in Microsoft 365 Admin Center, and how are they scoped?
+
+Roles include Global Admin, Billing Admin, Exchange Admin, Teams Admin, Security Admin, etc. Scoping can be tenant-wide or limited to administrative units.
+
+19. How do you track service health and incident reports in Microsoft 365 Admin Center?
+
+The Service Health dashboard provides real-time information about active incidents and advisories, helping admins stay informed of service disruptions.
+
+20. How can you create and manage compliance policies using Microsoft Purview in the Admin Center?
+
+Microsoft Purview enables creation of data loss prevention (DLP), retention policies, eDiscovery, and audit logs directly from the Compliance admin portal to ensure regulatory compliance.
+
+Section 5: Integration and Hybrid Scenarios
+21. How does Microsoft Entra Connect (Azure AD Connect) work?
+
+It synchronizes on-prem AD objects to Entra ID, supports password hash sync, pass-through authentication, federation integration, and write-back features like password reset.
+
+22. What is directory synchronization and how do you troubleshoot sync issues?
+
+Directory synchronization keeps identities consistent. Troubleshooting involves reviewing sync service manager logs, using Azure AD Connect Health, and verifying attribute conflicts or errors.
+
+23. What is Entra Connect Cloud Sync and how is it different from Azure AD Connect?
+
+Cloud Sync is a lightweight, agent-based sync solution designed for simpler or distributed environments; Azure AD Connect is more comprehensive with advanced features but requires a Windows server.
+
+24. How do you handle user provisioning from on-prem to cloud and vice versa?
+
+Provision users from on-prem AD to cloud using Azure AD Connect. Write-back features (password reset, device write-back) allow changes to flow back from cloud to on-prem.
+
+25. What are B2B and B2C identities in Entra ID, and when would you use each?
+
+B2B: Invite external partners to collaborate using their existing credentials.
+
+B2C: Provide customer-facing identity and access management with customizable sign-in/signup.
+
+Section 6: Advanced Features and Troubleshooting
+26. What tools are available for auditing and reporting in Entra ID?
+
+Azure AD sign-in and audit logs
+
+Microsoft 365 Security & Compliance Center reports
+
+Azure Monitor and Log Analytics
+
+Microsoft Graph API for custom reporting
+
+27. How do you monitor user sign-in activity and detect anomalies?
+
+Use Azure AD Identity Protection, sign-in logs, and Conditional Access insights to detect unfamiliar locations, devices, or suspicious sign-in attempts.
+
+28. How do you restrict or allow access to Microsoft 365 apps based on device compliance?
+
+Conditional Access policies can require devices to be marked compliant by Intune or another MDM before allowing access.
+
+29. What is Privileged Identity Management (PIM), and how does it improve security?
+
+PIM provides just-in-time privileged access, requiring approval and time-limited roles to reduce risk of standing admin accounts.
+
+30. How would you respond to a compromised user account in Microsoft Entra ID?
+
+Immediately disable or reset the account password
+
+Review recent sign-in logs for suspicious activity
+
+Enforce MFA
+
+Review Conditional Access policies
+
+Use Azure AD Identity Protection to investigate and remediate risks

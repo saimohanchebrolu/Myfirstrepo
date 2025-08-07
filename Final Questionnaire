@@ -1,0 +1,830 @@
+Section 1: End User Computing & Device Management — Detailed Answers
+Microsoft Intune
+1. What are the different enrollment methods available in Microsoft Intune?
+
+Automatic Enrollment: Devices joined to Azure AD automatically enroll when a user signs in (Windows 10/11).
+
+Bring Your Own Device (BYOD) Enrollment: Users manually enroll personal devices via Company Portal (iOS, Android, Windows).
+
+Apple Automated Device Enrollment (ADE) (formerly DEP): Apple devices enrolled automatically via Apple Business Manager.
+
+Android Enterprise Enrollment: Managed Google Play enrollment for Android devices.
+
+Bulk enrollment: Using provisioning packages or Windows Configuration Designer for multiple devices.
+
+2. How does Intune enforce device compliance policies?
+Intune defines compliance policies with rules like OS version, password complexity, encryption, etc. Devices report their compliance status to Intune, which can block access to resources via Conditional Access if non-compliant. Compliance results can trigger remediation actions like remote wipe or notification.
+
+3. Explain the difference between MDM and MAM in Intune.
+
+MDM (Mobile Device Management) manages the entire device, applying policies, configuration, and control at OS level.
+
+MAM (Mobile Application Management) manages only the apps and data, allowing control without enrolling the full device — useful for BYOD where users keep personal data private.
+
+4. How do you deploy applications using Intune?
+
+Upload app packages (MSI, EXE, MSIX for Windows; .apk for Android; .ipa for iOS).
+
+Configure app information and deployment settings.
+
+Assign apps to device or user groups as Available (optional install) or Required (mandatory install).
+
+Monitor installation status via Intune console.
+
+5. How can you troubleshoot Intune device sync issues?
+
+Check device’s internet connectivity.
+
+Verify Company Portal app is installed and logged in.
+
+Review Intune Management Extension logs on Windows devices (IntuneManagementExtension.log).
+
+Use the Troubleshooting + support blade in Intune portal.
+
+Re-enroll device if necessary.
+
+SCCM
+6. What is co-management in SCCM and Intune?
+Co-management allows devices to be managed by both SCCM and Intune simultaneously. This enables gradual transition of workloads (like patch management, compliance, endpoint protection) from SCCM to Intune while maintaining existing management infrastructure.
+
+7. Describe the SCCM site architecture and its components.
+
+Primary Site Server: Central server managing clients and site roles.
+
+Site Database: Stores all SCCM data (SQL Server).
+
+Management Point (MP): Client communication point.
+
+Distribution Point (DP): Content distribution.
+
+Software Update Point (SUP): Manages patch updates integrated with WSUS.
+
+Fallback Status Point (FSP): Helps troubleshoot client installs.
+
+8. How do you deploy software updates via SCCM?
+
+Configure SUP role integrated with WSUS.
+
+Synchronize updates from Microsoft.
+
+Create Software Update Groups and deploy to device collections.
+
+Clients scan for updates, download from DP, and install.
+
+Monitor deployment status.
+
+9. What are collections and how do you use them?
+Collections group devices or users based on criteria, either static (manual membership) or dynamic (query-based). They are targets for deployments, policies, and reporting.
+
+10. How would you troubleshoot SCCM client installation issues?
+
+Check ccmsetup.log on client for errors.
+
+Verify network/firewall access to MP and DP.
+
+Confirm client push account permissions.
+
+Remove any partial client installs and retry.
+
+Use Client Push Installation Wizard or manual install.
+
+Windows OS
+11. What are the differences between Windows 10 and Windows 11 from a deployment perspective?
+Windows 11 requires newer hardware (TPM 2.0, Secure Boot), has updated UI and security features, and needs updated drivers. Deployment tools (SCCM, Intune) must support Windows 11 images and policies.
+
+12. How do you automate Windows OS deployment?
+Using SCCM task sequences, Windows Autopilot for modern deployment, or MDT (Microsoft Deployment Toolkit). Task sequences automate steps like disk partitioning, OS image application, driver installation, and post-deployment software installs.
+
+13. How can you optimize Windows startup times?
+
+Disable unnecessary startup programs/services.
+
+Use Fast Startup feature.
+
+Keep drivers and OS updated.
+
+Defragment drives (HDD).
+
+Use SSDs for faster boot.
+
+14. What is Windows Autopilot and how is it used?
+Autopilot simplifies device provisioning by allowing new devices to be pre-registered with Microsoft, then configured on first boot with company policies, apps, and settings via Intune without imaging.
+
+15. How do you manage Windows updates in an enterprise environment?
+Use WSUS or SCCM Software Update Point to control update deployment. Intune with Windows Update for Business allows cloud-based update policies with deferral options and automatic deployment.
+
+Active Directory & Entra ID (Azure AD)
+16. What are the key differences between Active Directory and Azure AD?
+
+AD is on-premises, domain-based directory.
+
+Azure AD is cloud-based identity service for SaaS and cloud apps.
+
+AD uses LDAP/Kerberos; Azure AD uses modern protocols (OAuth, SAML).
+
+Azure AD supports conditional access, MFA, device registration.
+
+17. How does Azure AD Connect work?
+Azure AD Connect synchronizes users, groups, and passwords from on-prem AD to Azure AD, enabling hybrid identity and single sign-on for cloud resources.
+
+18. Explain Azure AD Conditional Access and its use cases.
+Conditional Access enforces policies (e.g., require MFA, block access) based on conditions like user location, device compliance, app sensitivity, and risk levels to secure access.
+
+19. What is device registration in Azure AD?
+Devices can be Azure AD Joined, Hybrid Azure AD Joined, or Azure AD Registered to enable management and Conditional Access policies.
+
+20. How do you troubleshoot synchronization issues between AD and Azure AD?
+
+Review Azure AD Connect logs.
+
+Use Azure AD Connect Health portal.
+
+Check sync rules, filtering, and permissions.
+
+Force manual sync with Start-ADSyncSyncCycle.
+
+Resolve duplicate or conflicting attributes.
+
+GPO (Group Policy Objects)
+21. How do GPOs apply to users vs. computers?
+GPOs have User Configuration (applies to users regardless of device) and Computer Configuration (applies to computers regardless of user).
+
+22. How would you troubleshoot GPO application failures?
+
+Run gpresult /r to see applied GPOs.
+
+Check network connectivity to domain controllers.
+
+Verify SYSVOL and NETLOGON shares are accessible.
+
+Use Event Viewer for errors.
+
+Confirm correct OU linking and security filtering.
+
+23. What are Group Policy preferences?
+Preferences allow configuring settings that are not enforced strictly and can be changed by users, like mapped drives, shortcuts, or scheduled tasks.
+
+24. How do you enforce security policies using GPO?
+Set password policies, audit policies, firewall rules, and software restrictions via Computer Configuration > Policies > Windows Settings > Security Settings.
+
+25. How can you block inheritance for GPOs in Active Directory?
+At OU level, set Block Inheritance or use Enforced on a GPO to override inheritance.
+
+If you want, I can continue with Section 2: Cloud & Identity Management, or any other sections next. Just let me know!
+
+
+
+You said:
+yes
+
+ChatGPT said:
+Awesome! Here’s Section 2: Cloud & Identity Management with detailed answers based on your skillset:
+
+Section 2: Cloud & Identity Management — Detailed Answers
+Microsoft 365 / Exchange Online
+26. How do you configure Exchange Online for mail flow?
+
+Set up accepted domains for your organization in Exchange Online.
+
+Configure mail flow connectors if you have a hybrid environment or third-party filtering.
+
+Use Exchange Online Protection (EOP) to filter spam and malware.
+
+Configure mail routing rules (transport rules) to apply policies or redirects.
+
+Verify DNS records (MX, SPF, DKIM, DMARC) are correctly configured for your domains.
+
+Monitor mail queues and reports in the Exchange Admin Center (EAC).
+
+27. What are mailbox types in Exchange Online?
+
+User Mailbox: Assigned to a user, stores emails, calendar, contacts.
+
+Shared Mailbox: Accessed by multiple users, doesn’t require a license if <50GB.
+
+Resource Mailbox: Used for rooms or equipment scheduling.
+
+Archive Mailbox: Provides additional storage for older emails.
+
+Linked Mailbox: Mailbox linked to a user in another forest (rare in Exchange Online).
+
+28. How do you handle migration from on-prem Exchange to Exchange Online?
+
+Choose a migration method: Cutover, Staged, Hybrid, or IMAP migration.
+
+Prepare your environment (update Exchange versions, verify domains).
+
+Use Azure AD Connect for user sync.
+
+Move mailboxes in batches using migration batches or Hybrid Migration Wizard.
+
+Update DNS MX records post-migration.
+
+Decommission on-prem Exchange servers when ready.
+
+29. Explain how to configure multi-factor authentication (MFA) in Microsoft 365.
+
+Enable MFA per user or via Conditional Access policies in Azure AD for more granular control.
+
+Users register authentication methods (phone app, text, call, hardware token).
+
+Configure trusted IPs and app passwords as needed.
+
+Monitor MFA usage and suspicious sign-in activity via Azure AD sign-in logs.
+
+30. How do you monitor service health and troubleshoot issues in Microsoft 365?
+
+Use the Microsoft 365 Admin Center > Service Health Dashboard for current and past incidents.
+
+Subscribe to health notifications.
+
+Use Microsoft 365 Message Center for planned maintenance and advisories.
+
+Run diagnostics from the Support and Recovery Assistant (SaRA) tool.
+
+Use PowerShell cmdlets (e.g., Get-ServiceHealth) for automated checks.
+
+Azure Active Directory / Entra ID (Covered briefly here since detailed Qs were in Section 1)
+If you want, I can move next to Section 3: Linux Administration, or continue with Tools & IT Operations or any section you prefer. Just say the word!
+
+
+
+You said:
+yes
+
+ChatGPT said:
+Perfect! Here’s Section 3: Linux Administration with detailed answers:
+
+Section 3: Linux Administration — Detailed Answers
+Process & Memory Monitoring
+31. What Linux commands can you use to monitor processes and memory?
+
+top: Real-time dynamic view of running processes, CPU, and memory usage.
+
+htop: Enhanced interactive version of top with better UI and navigation.
+
+ps: Displays snapshot of current processes.
+
+free -m: Shows memory and swap usage in MB.
+
+vmstat: Provides system performance info including processes, memory, paging, block IO.
+
+sar: Collects, reports, and saves system activity.
+
+32. How do you interpret output from the top command?
+
+At the top, system uptime, number of users, load average (1, 5, 15 min) show system health.
+
+CPU states (%us, %sy, %id, %wa) indicate user, system, idle, I/O wait time.
+
+Memory shows total, used, free, buffers, and cache.
+
+The process list shows PID, user, CPU%, MEM%, command. High CPU or MEM% processes indicate resource usage.
+
+33. What is swap memory and when should it be used?
+Swap is disk space used as virtual memory when RAM is full. It helps avoid out-of-memory errors but is slower. Swap is useful for handling bursts of memory usage but relying on swap regularly indicates need for more RAM.
+
+34. How do you kill a process in Linux?
+
+Use kill <PID> to send SIGTERM (graceful termination).
+
+Use kill -9 <PID> to force kill (SIGKILL).
+
+Use pkill <processname> to kill by name.
+
+Use killall <processname> kills all matching processes.
+
+35. How do you find memory leaks in a Linux application?
+
+Use tools like valgrind to detect memory leaks during runtime.
+
+Monitor application memory usage over time with top or ps.
+
+Check logs for out-of-memory errors.
+
+Use pmap to check memory map of a process.
+
+Analyze core dumps if application crashes.
+
+Text/Log Parsing
+36. How do you use grep, awk, and sed for text processing?
+
+grep: Searches for matching patterns in files (grep "error" /var/log/syslog).
+
+awk: Field-level processing and reporting (awk '{print $1,$5}' file.txt).
+
+sed: Stream editor for substitution, deletion, insertion (sed 's/error/ERROR/g' logfile).
+They can be combined in pipelines to filter and transform logs.
+
+37. Explain how to parse and analyze log files in Linux.
+
+Use tail -f to view live logs.
+
+Use grep to filter specific errors or keywords.
+
+Use awk to extract specific fields like timestamps.
+
+Use cut or sed to manipulate text.
+
+Use logrotate to manage log size and retention.
+
+For complex parsing, write scripts or use tools like Logstash.
+
+38. What is the difference between tail and less commands?
+
+tail shows the last lines of a file, often with live updates (tail -f).
+
+less allows scrolling through the entire file with navigation, search, and paging.
+
+39. How can you automate log rotation on Linux?
+
+Use the logrotate utility, configured via /etc/logrotate.conf or /etc/logrotate.d/.
+
+Define rotation frequency, compression, retention, and post-rotation actions.
+
+Run automatically via cron jobs.
+
+40. Describe how to extract specific information from a log using command-line tools.
+Example: Extract all failed ssh login attempts from /var/log/auth.log:
+
+bash
+Copy
+Edit
+grep "Failed password" /var/log/auth.log | awk '{print $1, $2, $3, $11}'
+This prints date, time, and username/IP from log lines matching "Failed password".
+
+User & File System Management
+41. How do you add, modify, and delete users in Linux?
+
+Add user: useradd username (creates user).
+
+Set password: passwd username.
+
+Modify user: usermod (e.g., change shell, group).
+
+Delete user: userdel username (with -r to remove home directory).
+
+42. What is the purpose of /etc/passwd and /etc/shadow files?
+
+/etc/passwd stores user account info like username, UID, home directory, shell (public).
+
+/etc/shadow stores encrypted user passwords and aging info (restricted access).
+
+43. How do you check disk usage and free space on Linux?
+
+df -h: Displays disk space usage in human-readable format for mounted filesystems.
+
+du -sh /path: Shows total space used by directory.
+
+lsblk: Lists block devices and partitions.
+
+44. Explain Linux file permissions and how to modify them.
+
+Permissions are read (r), write (w), execute (x) for user, group, others.
+
+Use ls -l to view permissions.
+
+Modify using chmod (e.g., chmod 755 file).
+
+Change ownership with chown user:group file.
+
+45. How do you mount and unmount filesystems?
+
+Mount: mount /dev/sdX1 /mnt/point
+
+Unmount: umount /mnt/point
+
+Persistent mounts configured in /etc/fstab.
+
+Shell Scripting
+46. What are basic components of a shell script?
+
+Shebang line (#!/bin/bash).
+
+Commands, variables, control structures (if, loops).
+
+Comments (#).
+
+Functions.
+
+47. How do you pass arguments to a shell script?
+Arguments are accessed via positional parameters $1, $2, etc. $0 is script name.
+Example: ./script.sh arg1 arg2
+Inside script: $1 = arg1, $2 = arg2.
+
+48. Explain how to use conditional statements in shell scripting.
+
+bash
+Copy
+Edit
+if [ condition ]; then
+  # commands
+elif [ condition ]; then
+  # commands
+else
+  # commands
+fi
+Conditions can check file existence (-f), string equality, numerical comparisons.
+
+49. How do you schedule scripts to run automatically?
+
+Use cron jobs: edit crontab with crontab -e.
+
+Format: * * * * * /path/to/script.sh (minute hour day month day-of-week).
+
+For one-time, use at command.
+
+50. Write a shell script snippet to check if a service is running and restart it if it’s not.
+
+bash
+Copy
+Edit
+#!/bin/bash
+SERVICE="apache2"
+if systemctl is-active --quiet $SERVICE; then
+  echo "$SERVICE is running."
+else
+  echo "$SERVICE is not running. Restarting..."
+  systemctl restart $SERVICE
+fi
+That completes the Linux section. Ready for the next section (Tools & IT Operations) or want to focus on something else?
+
+
+
+You said:
+tools and operations
+
+ChatGPT said:
+Got it! Here’s Section 4: Tools & IT Operations with detailed answers based on your skillset:
+
+Section 4: Tools & IT Operations — Detailed Answers
+ServiceNow
+51. What is ServiceNow and how is it used in IT operations?
+ServiceNow is a cloud-based IT Service Management (ITSM) platform used to automate IT workflows and streamline processes such as incident management, problem management, change management, and asset management. It helps improve efficiency and service delivery by centralizing IT service requests and tracking.
+
+52. How do you create and manage incidents in ServiceNow?
+
+Incidents are created manually via the portal, email, or automatically via integrations.
+
+Key fields include description, category, priority, assignment group, and status.
+
+Use workflows to route incidents to appropriate teams.
+
+Update incident records with progress notes, resolution info, and closure details.
+
+SLA timers track resolution performance.
+
+53. What are ServiceNow workflows and how do you customize them?
+Workflows are sequences of activities that automate business processes in ServiceNow. You can design workflows using a drag-and-drop Workflow Editor, adding approvals, tasks, notifications, and conditionals. Custom scripts can be added for advanced logic.
+
+54. How do you handle change management in ServiceNow?
+
+Create a Change Request (CR) record specifying the change type (standard, emergency, normal).
+
+Assign approval groups and document risk assessment.
+
+Schedule and implement changes using workflow automation.
+
+Use CAB (Change Advisory Board) meetings to approve significant changes.
+
+Track change history and perform post-implementation reviews.
+
+55. How can you generate reports and dashboards in ServiceNow?
+
+Use the reporting module to create custom reports using filters, groupings, and charts.
+
+Build dashboards by combining multiple reports and widgets.
+
+Schedule reports to run automatically and send via email.
+
+Reports help analyze trends, SLA compliance, and team performance.
+
+SAP Procurement
+56. What is the SAP procurement process?
+SAP procurement manages purchasing activities to acquire goods and services. Key steps:
+
+Purchase Requisition (PR): Request for purchase initiated by users.
+
+Purchase Order (PO): Official purchase document sent to vendor.
+
+Goods Receipt (GR): Confirmation that goods are received.
+
+Invoice Verification (IV): Checking vendor invoice against PO and GR.
+
+Payment Processing: Payment made to the vendor.
+
+57. What SAP modules are involved in procurement?
+
+MM (Materials Management): Core procurement functions.
+
+FI (Financial Accounting): Manages invoices and payments.
+
+SRM (Supplier Relationship Management): Vendor interactions and sourcing.
+
+WM (Warehouse Management): Inventory handling post-purchase.
+
+58. How do you track purchase orders in SAP?
+
+Use transaction codes like ME23N (Display Purchase Order).
+
+Check status (open, partially received, closed).
+
+Track delivery and invoice history linked to PO.
+
+Use reports for outstanding orders and vendor performance.
+
+59. How can you handle procurement approvals in SAP?
+
+Use release strategy configured for purchase documents.
+
+Approval steps depend on document value, type, and organizational rules.
+
+Approvals can be done via SAP GUI or Fiori apps.
+
+Automated notifications alert approvers.
+
+60. How do you resolve discrepancies between PO, GR, and invoice in SAP?
+
+Investigate quantity or price differences using transaction codes like MIRO (Invoice Verification).
+
+Communicate with vendors for corrections.
+
+Adjust records or post credit/debit memos if needed.
+
+Ensure proper approvals for changes.
+
+Microsoft Excel
+61. How do you use Excel for IT data analysis?
+
+Import data via CSV, SQL queries, or Power Query.
+
+Use PivotTables to summarize large datasets.
+
+Apply filters and conditional formatting to highlight anomalies.
+
+Use formulas like VLOOKUP, INDEX-MATCH, IF for data manipulation.
+
+Create charts for visual data representation.
+
+62. Explain how to automate repetitive tasks in Excel.
+
+Use Macros recorded via the Developer tab or write VBA scripts.
+
+Automate data import, formatting, calculations, and report generation.
+
+Assign macros to buttons for ease of use.
+
+63. What are some useful Excel functions for IT reporting?
+
+COUNTIF / SUMIF: Count or sum based on criteria.
+
+TEXT: Format dates/numbers.
+
+NOW / TODAY: Dynamic timestamps.
+
+CONCATENATE / &: Combine text strings.
+
+IFERROR: Handle formula errors gracefully.
+
+64. How do you ensure data integrity in Excel spreadsheets?
+
+Use Data Validation to restrict input types or ranges.
+
+Protect sheets or ranges to prevent accidental changes.
+
+Maintain backups and version control.
+
+Use formula auditing tools to trace errors.
+
+65. How can Excel integrate with other IT tools?
+
+Export/import data from ServiceNow or SAP reports for analysis.
+
+Use Power Query to connect to databases or APIs.
+
+Automate data refresh using VBA or Power Automate.
+
+Generate reports that feed into dashboards or emails.
+
+If you want, I can now prepare a comprehensive tough interview questionnaire combining all sections, or help you with mock interview questions, scenario-based questions, or coding/script examples. Just let me know!
+
+
+
+You said:
+yes
+
+ChatGPT said:
+Great! Here’s a comprehensive tough interview questionnaire covering all your skillsets — End User Computing, Cloud & Identity Management, Linux Administration, and Tools & IT Operations — complete with in-depth answers.
+
+Comprehensive Tough Interview Questionnaire with Detailed Answers
+End User Computing & Device Management
+1. How does Microsoft Intune manage devices and enforce compliance?
+
+Intune enrolls devices to manage configurations, apps, and security policies.
+
+Compliance policies define rules (e.g., requiring encryption, patch level).
+
+Non-compliant devices can be blocked from accessing corporate resources using Conditional Access.
+
+Example: Blocking access to Exchange Online if device is jailbroken.
+
+2. What are the main components of SCCM architecture?
+
+Site Server (Primary or Secondary) manages clients.
+
+SQL Server stores site database.
+
+Distribution Points host content.
+
+Management Points communicate with clients.
+
+Clients run the SCCM agent for deployments and reporting.
+
+3. How do you deploy software updates via SCCM?
+
+Synchronize updates from WSUS to SCCM.
+
+Create software update groups.
+
+Deploy update groups to device collections with deadlines.
+
+Monitor compliance reports.
+
+4. Explain Group Policy Objects (GPO) and their scope.
+
+GPOs control user/computer settings in Active Directory.
+
+Linked at Site, Domain, or OU level; inheritance rules apply.
+
+Policies include security settings, scripts, software installs.
+
+Use tools like gpresult to troubleshoot.
+
+Cloud & Identity Management
+5. How does Azure AD Conditional Access enhance security?
+
+Conditional Access applies policies based on user, device state, location, app.
+
+Requires MFA for risky sign-ins or blocks access from unmanaged devices.
+
+Enables granular control and reduces attack surface.
+
+6. Describe the synchronization process between on-prem AD and Entra ID.
+
+Azure AD Connect syncs user accounts, groups, passwords.
+
+Supports Password Hash Sync or Pass-through Authentication.
+
+Health monitoring ensures sync success.
+
+7. How do you manage Exchange Online mail flow?
+
+Configure accepted domains and connectors.
+
+Use transport rules to route or filter emails.
+
+Monitor message trace for troubleshooting.
+
+Linux Administration
+8. How would you diagnose high memory usage on a Linux server?
+
+Use top or htop to identify heavy processes.
+
+Check free -m and vmstat for memory/swap status.
+
+Use ps aux --sort=-%mem to list top memory consumers.
+
+Check logs for errors or memory leaks.
+
+9. Write a shell script to monitor disk usage and alert if above threshold.
+
+bash
+Copy
+Edit
+#!/bin/bash
+THRESHOLD=80
+USAGE=$(df / | tail -1 | awk '{print $5}' | sed 's/%//')
+if [ $USAGE -gt $THRESHOLD ]; then
+  echo "Disk usage is above $THRESHOLD% on /"
+fi
+10. How do you parse logs for failed login attempts?
+
+Use grep "Failed password" /var/log/auth.log | awk '{print $1,$2,$3,$11}' to extract date/time and IP.
+
+Tools & IT Operations
+11. How do you automate incident creation in ServiceNow from email?
+
+Configure email inbound actions in ServiceNow.
+
+Define parsing rules to extract relevant info.
+
+Create incident records and assign to proper groups.
+
+12. Explain SAP procurement integration with financial accounting.
+
+Purchase Orders create financial commitments.
+
+Goods Receipt posts inventory increase.
+
+Invoice Verification matches PO and GR to post accounting documents.
+
+13. What Excel features help analyze IT operational data?
+
+PivotTables to summarize logs or ticket volumes.
+
+Conditional formatting to highlight SLA breaches.
+
+Formulas and charts for trend analysis.
+
+Scenario-Based Questions
+14. A user reports they cannot access SharePoint Online from a mobile device. How do you troubleshoot?
+
+Check Conditional Access policies for device compliance.
+
+Verify device enrollment status in Intune.
+
+Review Azure AD sign-in logs for errors.
+
+Confirm SharePoint permissions and licensing.
+
+15. Your Linux server’s disk is full. How do you quickly free space?
+
+Identify large files with du -sh /*.
+
+Clear system logs (/var/log), clean package caches (yum clean all or apt-get clean).
+
+Remove unused kernels or temp files.
+
+Communicate with app owners if data deletion is needed.
+
+If you want, I can help prepare mock interview scripts, deep dive on any question, or provide coding/script examples and troubleshooting workflows. What do you want next?
+
+
+
+You said:
+few more questions
+
+ChatGPT said:
+Absolutely! Here are a few more tough, in-depth questions across your skillset — with detailed answers to keep you sharp for the interview:
+
+Additional Tough Questions with Answers
+End User Computing & Device Management
+16. How do you troubleshoot Windows OS startup issues remotely?
+
+Use tools like Event Viewer logs remotely (eventvwr.msc) for boot errors.
+
+Utilize WinRM/PowerShell Remoting to check services and processes.
+
+Use Safe Mode via remote management tools or through Task Scheduler tricks.
+
+Check BSOD memory dump files if available using WinDbg.
+
+Example: Remote into machine, check bootmgr errors in System log.
+
+Cloud & Identity Management
+17. Explain the difference between Azure AD B2B and B2C. When do you use each?
+
+Azure AD B2B (Business-to-Business): Allows collaboration by inviting external users to access internal resources with their own credentials.
+
+Azure AD B2C (Business-to-Customer): Manages consumer identities and enables custom-branded sign-in for public-facing applications.
+
+Use B2B for partner collaboration; B2C for customer-facing apps.
+
+Linux Administration
+18. How do you automate user creation and setup in Linux with scripting?
+
+Write a script to add user, set password, create home directory, assign groups, and set permissions.
+
+Example snippet:
+
+bash
+Copy
+Edit
+#!/bin/bash
+username=$1
+useradd -m $username
+echo "$username:Password123" | chpasswd
+usermod -aG sudo $username
+Extend to copy SSH keys or configure environment files.
+
+Tools & IT Operations
+19. How do you integrate ServiceNow with Microsoft Teams for incident notifications?
+
+Use ServiceNow’s Teams integration connector or custom webhooks.
+
+Configure inbound webhooks in Teams channel to receive alerts.
+
+Automate notifications for incident creation, updates, or SLA breaches.
+
+Example: Notify support group instantly of high priority incidents.
+
+Microsoft Excel
+20. How do you use Power Query to clean and transform IT data?
+
+Import CSV or web data via Power Query editor.
+
+Remove duplicates, filter rows, split columns, change data types.
+
+Merge multiple tables for consolidated reports.
+
+Load cleaned data to Excel or Power BI for analysis.

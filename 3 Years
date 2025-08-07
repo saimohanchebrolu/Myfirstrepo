@@ -1,0 +1,185 @@
+End User Computing & Device Management
+1. How do you manage and troubleshoot device compliance issues in Intune?
+
+Use the Intune admin center to check compliance status per device/user.
+
+Review compliance policies applied (e.g., encryption, password, OS version).
+
+Investigate non-compliant devices via device details and logs.
+
+Common fixes include forcing device sync, checking device enrollment status, updating OS or apps, and ensuring compliance with conditional access policies.
+
+Example: A device failing compliance due to outdated OS can be remediated by pushing a patch or notifying the user.
+
+2. Explain the process to deploy Win32 applications via Intune. What challenges have you faced?
+
+Prepare the Win32 app by packaging files with Microsoft’s Win32 Content Prep Tool into .intunewin format.
+
+Upload to Intune, configure detection rules, install/uninstall commands, and requirements.
+
+Assign to device/user groups.
+
+Challenges: Handling complex install commands, silent install parameters, dependency management, and reliable detection rule configuration to avoid reinstall loops.
+
+3. How do you perform an SCCM client health check and fix common client issues?
+
+Check client registration status in SCCM console under Devices.
+
+On the client, review ccmexec service status, logs like ClientIDManagerStartup.log, and LocationServices.log.
+
+Common fixes: Reinstall client using ccmsetup.exe /uninstall then reinstall, reset WMI repository, repair network or boundary group assignments.
+
+4. What are the differences between user and device collections in SCCM? How do you decide which to use?
+
+User collections group users, useful for deploying user-targeted software or policies.
+
+Device collections group devices, better for machine-based installs or configurations.
+
+Decision depends on deployment type and scenario — e.g., deploy an app to all users regardless of device use user collections; for OS deployments, device collections.
+
+5. Describe a time you used GPO to fix a group policy conflict or replication issue. How did you identify and resolve it?
+
+Used tools like gpresult /r and Group Policy Modeling to identify conflicting GPOs.
+
+Checked SYSVOL replication using repadmin commands.
+
+Resolved by adjusting GPO link order, enforcing a GPO, or fixing replication issues with DFSR logs and restarting services.
+
+Cloud & Identity Management (Entra ID / Azure AD)
+6. How do you configure and troubleshoot Azure AD Connect sync errors?
+
+Use Azure AD Connect Health and Synchronization Service Manager to view sync status and errors.
+
+Common errors include attribute conflicts, duplicate objects, or permission issues.
+
+Resolutions involve fixing attribute data, filtering sync scope, or re-running sync with Start-ADSyncSyncCycle.
+
+7. What are the benefits and limitations of Password Hash Sync vs Pass-through Authentication?
+
+Password Hash Sync: Copies hashed passwords to Azure AD, allows cloud authentication even if on-prem is down.
+
+Pass-through Auth: Authenticates users against on-prem AD directly; no password stored in cloud.
+
+Benefits: Hash sync is simple, pass-through keeps password validation on-prem for compliance.
+
+Limitations: Pass-through depends on on-prem availability; hash sync less suitable for strict compliance.
+
+8. How do you secure Azure AD identities beyond MFA? Describe Conditional Access policies you've implemented.
+
+Conditional Access enforces access control based on conditions like location, device compliance, app sensitivity.
+
+Policies include requiring compliant devices, blocking legacy auth, requiring MFA for risky sign-ins, or restricting access from specific countries.
+
+Example: Blocking access from untrusted networks unless device is Intune compliant.
+
+9. What’s the difference between managed and federated identities in Azure AD?
+
+Managed identities are stored and authenticated entirely by Azure AD (e.g., cloud-only users).
+
+Federated identities use an external identity provider (like ADFS) to authenticate users, with Azure AD trusting that provider.
+
+Federation enables single sign-on for on-prem users.
+
+10. How do you monitor sign-in logs and audit logs for suspicious activity in Entra ID?
+
+Use Azure AD Sign-in logs and Audit logs in the Azure portal.
+
+Look for failed sign-ins, unfamiliar locations, or impossible travel indicators.
+
+Set up alerts for risky sign-ins or admin changes using Azure Sentinel or Microsoft Defender for Identity.
+
+Linux Administration
+11. Describe a scenario where you automated routine Linux server maintenance tasks using shell scripts.
+
+Created scripts to clean /tmp directories, rotate logs, and backup configuration files.
+
+Scheduled via cron for regular execution.
+
+Example: Automated daily backup of /etc with timestamp and email notification on failure.
+
+12. How do you troubleshoot a slow-running Linux server? What commands and steps do you take?
+
+Use top or htop to check CPU and memory usage.
+
+iostat and vmstat to analyze disk IO and paging.
+
+Check running processes for high resource usage (ps aux --sort=-%cpu).
+
+Investigate logs (/var/log/syslog or /var/log/messages) for errors.
+
+Check network load with netstat or iftop.
+
+13. Explain how you would analyze and resolve a memory leak caused by a Linux service.
+
+Monitor memory over time with top or ps.
+
+Use pmap or smem to inspect process memory maps.
+
+Run the application with valgrind or massif to identify leaks during testing.
+
+Restart service as temporary fix; escalate to dev for code fix.
+
+14. What Linux permissions issues have you faced and how did you fix them?
+
+Users unable to access shared directories due to incorrect group ownership or restrictive permissions.
+
+Fixed by adjusting permissions with chmod and ownership with chown/chgrp.
+
+Used ACLs (setfacl) for fine-grained access control when needed.
+
+15. How do you use cron jobs for scheduling backups or log cleanups? Provide an example crontab entry.
+
+Use crontab -e to edit cron jobs.
+
+Example: 0 2 * * * /usr/local/bin/backup.sh runs backup script daily at 2 AM.
+
+Ensure scripts have proper permissions and log output for auditing.
+
+Tools & IT Operations
+16. What are the key features of ServiceNow CMDB, and how does it integrate with incident and change management?
+
+CMDB stores Configuration Items (CIs) and their relationships.
+
+Helps identify impacted services during incidents.
+
+Enables impact analysis and root cause identification in Change Management.
+
+Integration automates updates to incident/change records with CI data.
+
+17. Explain how you have used ServiceNow automation to improve IT service delivery.
+
+Automated incident assignment using business rules and workflows.
+
+Created SLA escalations and notifications.
+
+Built catalog workflows to streamline service requests and approvals.
+
+18. Describe your experience working with SAP MM module in procurement. How do you handle PO discrepancies?
+
+Verified PO details using ME23N.
+
+Coordinated with vendors and finance for invoice verification.
+
+Used MIRO for matching invoices to PO and GR.
+
+Raised discrepancy reports and processed credit memos when necessary.
+
+19. How do you validate and clean large datasets in Excel before reporting?
+
+Remove duplicates, check for blank or incorrect entries.
+
+Use data validation rules to restrict input.
+
+Use formulas (ISERROR, TRIM) to clean data.
+
+Apply filters and conditional formatting to spot outliers.
+
+20. Give examples of Excel formulas or features you used to track IT KPIs or ticket trends.
+
+PivotTables to summarize tickets by status, priority, or assignee.
+
+COUNTIF to count tickets meeting certain criteria.
+
+DATEDIF to calculate ticket resolution times.
+
+Charts to visualize trends over time.

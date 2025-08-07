@@ -1,0 +1,189 @@
+Section 1: Fundamentals of Microsoft Intune
+1. What is Microsoft Intune and how does it fit into Microsoft Endpoint Manager?
+
+Microsoft Intune is a cloud-based Mobile Device Management (MDM) and Mobile Application Management (MAM) service that helps organizations manage and secure devices and apps. It is part of the Microsoft Endpoint Manager suite, which also includes Configuration Manager (SCCM), co-management capabilities, and endpoint analytics. Intune enables management of devices across platforms (Windows, iOS, Android, macOS) and ensures compliance and security policies are applied.
+
+2. What are the primary use cases for Microsoft Intune?
+
+Managing corporate-owned and BYOD devices
+
+Deploying and managing applications on devices
+
+Enforcing security and compliance policies
+
+Protecting organizational data on personal devices (MAM without enrollment)
+
+Enabling remote actions like wipe, reset, and lock
+
+Supporting modern provisioning with Windows Autopilot
+
+3. What types of devices and platforms does Intune support?
+
+Windows 10 and Windows 11 PCs
+
+macOS devices
+
+iOS and iPadOS devices
+
+Android phones and tablets
+
+Some Chromebook management capabilities
+
+4. How does Intune differ from traditional on-premises device management solutions like SCCM?
+
+Intune is cloud-native and manages devices over the internet without requiring on-prem infrastructure. SCCM is on-premises and primarily focused on managing Windows devices within the corporate network. Intune supports modern device management features like conditional access, app protection on unmanaged devices, and cloud app integration.
+
+5. What are the licensing options for Microsoft Intune?
+
+Intune licenses are available standalone or bundled within:
+
+Microsoft 365 E3/E5
+
+Enterprise Mobility + Security (EMS) E3/E5
+
+Microsoft 365 Business Premium
+
+Section 2: Enrollment and Device Management
+6. What are the different methods available to enroll devices into Intune?
+
+Automatic enrollment via Azure AD join
+
+Manual enrollment using Company Portal app
+
+Windows Autopilot for provisioning new devices
+
+Apple DEP (Device Enrollment Program) for iOS/macOS
+
+Android Enterprise enrollment (Work Profile, Fully Managed, etc.)
+
+Bulk enrollment using provisioning packages
+
+7. How does Autopilot work, and what are its benefits?
+
+Windows Autopilot enables IT to pre-configure new devices for users, automating setup, Azure AD join, and Intune enrollment, resulting in zero-touch deployment. Benefits include faster provisioning, standardized configurations, and reduced IT involvement.
+
+8. What is the difference between MDM and MAM in Intune?
+
+MDM (Mobile Device Management): Manages entire devices, enforcing settings and policies.
+
+MAM (Mobile Application Management): Manages only organizational apps and data, ideal for BYOD scenarios without device enrollment.
+
+9. How do you enroll Windows 10/11 devices in Intune?
+
+Via Azure AD Join with automatic enrollment enabled, manual enrollment through Settings > Access work or school > Connect, or Windows Autopilot provisioning.
+
+10. What are Enrollment Restrictions and how are they used?
+
+Enrollment Restrictions control which devices can enroll based on platform, OS version, device limit per user, or device ownership type, helping enforce compliance and prevent unauthorized device enrollments.
+
+Section 3: Policies and Compliance
+11. How do you create and deploy device configuration profiles in Intune?
+
+In the Intune portal, create a device configuration profile by selecting platform, profile type (e.g., Endpoint Protection, Device Restrictions), configure settings, and assign to groups.
+
+12. What is the purpose of Compliance Policies in Intune?
+
+Compliance Policies define rules devices must meet (e.g., minimum OS version, encryption enabled) to be considered compliant, which impacts Conditional Access decisions.
+
+13. How can you restrict device access based on compliance in Intune?
+
+Use Conditional Access policies to require device compliance for access to cloud apps or services.
+
+14. What is Conditional Access, and how does it integrate with Intune?
+
+Conditional Access evaluates signals like user, device compliance, location, and risk before granting access. Intune provides device compliance status that Conditional Access can enforce to block or allow access.
+
+15. How can you enforce encryption and passcode policies using Intune?
+
+By deploying configuration profiles that require BitLocker encryption on Windows, FileVault on macOS, or device passcodes with complexity rules on mobile platforms.
+
+Section 4: Application Management
+16. What are the different app deployment types supported in Intune?
+
+Microsoft Store apps (Windows)
+
+Line-of-business (LOB) apps (custom apps)
+
+MSI and EXE installers
+
+Web apps and URLs
+
+Office 365 apps
+
+Managed Google Play and Apple App Store apps
+
+17. How do you deploy Office 365 apps using Intune?
+
+By creating an Office 365 app deployment profile in Intune, specifying desired apps, languages, and installation options, then assigning it to user or device groups.
+
+18. What is the difference between Managed Apps and Unmanaged Apps?
+
+Managed Apps: Apps deployed and managed via Intune with policies and protection applied.
+
+Unmanaged Apps: Apps installed by the user without management control.
+
+19. How does app protection policy (MAM) work on personal devices?
+
+App Protection Policies protect corporate data within apps by enforcing encryption, preventing copy/paste, and requiring PINs, even on personal or unmanaged devices, without requiring full device enrollment.
+
+20. How do you handle app updates and uninstallations in Intune?
+
+You can deploy app updates by assigning new versions and remove apps by creating uninstall commands or removing assignments from groups.
+
+Section 5: Security and Monitoring
+21. How does Intune integrate with Microsoft Defender for Endpoint?
+
+Intune can deploy Defender for Endpoint clients and configure settings. Defender sends device health and threat data that Intune uses for compliance and Conditional Access decisions.
+
+22. What reporting and monitoring tools does Intune provide?
+
+Device compliance reports
+
+Enrollment status reports
+
+App installation reports
+
+Endpoint analytics
+
+Integration with Azure Monitor and Log Analytics
+
+23. How do you troubleshoot failed device enrollments?
+
+Check event logs on the device
+
+Review Intune portal enrollment errors
+
+Validate device and user license assignment
+
+Confirm network connectivity and prerequisites
+
+Use diagnostic tools like Company Portal logs
+
+24. What is the role of the Intune Company Portal app?
+
+It is the end-user interface for device enrollment, app installation, and accessing company resources. It also communicates device status back to Intune.
+
+25. How do you perform a remote wipe or selective wipe of a device?
+
+From the Intune portal, select the device and issue a Full wipe (factory reset) or Selective wipe (removes corporate data only, preserving personal data).
+
+Section 6: Advanced and Hybrid Scenarios
+26. How does co-management work between Intune and Configuration Manager (SCCM)?
+
+Co-management allows devices to be managed by both SCCM and Intune, enabling gradual transition to cloud management by splitting workloads like compliance, patching, and endpoint protection.
+
+27. What is Conditional Access policy enforcement on devices managed by Intune?
+
+It enforces access controls (like requiring compliant devices, MFA) based on device state reported by Intune, enhancing security.
+
+28. How do you manage macOS and iOS devices using Intune?
+
+Through Apple Business Manager enrollment and MDM profiles, using device configuration, compliance policies, and app management tailored for Apple platforms.
+
+29. What is Autopilot Reset and when would you use it?
+
+Autopilot Reset restores a Windows device to a business-ready state without wiping user data or removing device registration, used to fix issues or prepare devices for new users.
+
+30. How do you handle BYOD scenarios securely using Intune?
+
+Use MAM without enrollment, conditional access policies, app protection policies, and selective wipe to protect organizational data while respecting user privacy.

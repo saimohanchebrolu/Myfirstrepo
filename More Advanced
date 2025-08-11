@@ -1,0 +1,104 @@
+🖥️ End User Computing & Device Management
+1. What are the limitations of Windows Autopilot, and how do you troubleshoot deployment failures?
+Answer:
+Limitations include device registration restrictions (only supported hardware), dependency on internet connectivity, and limited support for some OEM drivers or configurations. Troubleshooting involves checking device registration status in the Autopilot service, reviewing deployment profiles, ensuring Azure AD and Intune licensing is correct, verifying network and DNS settings, and looking at event logs on the client device.
+
+2. Explain how to configure co-management between SCCM and Intune. What are the benefits?
+Answer:
+Co-management lets you manage Windows 10 devices with both SCCM and Intune. You configure it in SCCM by enabling co-management, setting workloads to Intune or SCCM, and enrolling devices in Intune. Benefits include gradual migration to cloud management, improved compliance and security, and leveraging cloud-based features without abandoning SCCM.
+
+3. How can you migrate Group Policy Objects (GPOs) between domains?
+Answer:
+Use the Group Policy Management Console (GPMC) Backup and Restore feature or the Migration Table in GPMC to move GPOs while updating domain-specific references. Alternatively, use PowerShell scripts or third-party tools.
+
+4. What are the key differences between on-premises Active Directory and Azure AD Domain Services?
+Answer:
+On-prem AD is a traditional LDAP-based directory service with full domain controller capabilities. Azure AD Domain Services provides managed domain services like domain join, LDAP, and group policy without managing domain controllers directly. It’s ideal for Azure VMs and apps needing legacy protocols but lacks some AD features.
+
+5. How do you configure Offline Files in Windows and troubleshoot sync issues?
+Answer:
+Configure via Group Policy to enable Offline Files. Files are cached locally when the network is unavailable. Troubleshooting involves checking event logs, verifying cache size, ensuring correct permissions, and resetting Offline Files cache if corrupted.
+
+☁️ Cloud & Identity Management
+6. Explain the difference between Azure AD B2B and B2C. When would you use each?
+Answer:
+B2B (Business to Business) allows external partners to access internal resources using their own credentials; used for collaboration. B2C (Business to Consumer) is for customer-facing apps allowing user sign-up/sign-in with social or local accounts.
+
+7. How do Conditional Access policies interact with MFA and device compliance?
+Answer:
+Conditional Access enforces access controls based on user/device conditions. It can require MFA if a sign-in is risky or if the device is non-compliant with Intune policies, enhancing security by combining factors.
+
+8. What is the Zero Trust security model, and how does Microsoft 365 implement it?
+Answer:
+Zero Trust means “never trust, always verify.” Microsoft 365 uses Conditional Access, Identity Protection, MFA, device compliance, and endpoint analytics to continuously assess trust before granting access.
+
+9. Describe the OAuth 2.0 and OpenID Connect protocols and their use in Azure AD authentication.
+Answer:
+OAuth 2.0 is an authorization framework granting limited access tokens. OpenID Connect extends OAuth 2.0 for authentication, returning user identity information (ID tokens). Azure AD uses both for secure authentication and delegated authorization in apps.
+
+10. How do you configure app registrations and API permissions in Azure AD?
+Answer:
+In Azure portal, register your application to get an Application (client) ID. Then assign API permissions (delegated or application) and grant admin consent. Use these credentials in your app to authenticate and authorize API calls.
+
+🐧 Linux Administration
+11. What are Linux runlevels and how have they evolved with systemd targets?
+Answer:
+Runlevels are traditional states of system operation (e.g., multi-user, graphical). systemd replaced runlevels with targets like multi-user.target and graphical.target providing more granular control.
+
+12. How do you configure Linux log rotation and why is it important?
+Answer:
+Logrotate utility manages log file sizes by rotating and compressing logs. Configuration is in /etc/logrotate.conf or /etc/logrotate.d/. Prevents disk space exhaustion and manages log retention.
+
+13. Explain how to set up NFS (Network File System) and troubleshoot permissions.
+Answer:
+Install NFS server, configure /etc/exports with directories and client access, start the NFS service. Troubleshoot permissions by checking file ownership, export options, and client mount options.
+
+14. How do you secure a Linux server using firewall tools like firewalld or iptables?
+Answer:
+Use firewalld or iptables to define rules allowing/denying traffic by ports, IPs, protocols. Implement default deny policy and open only required ports/services.
+
+15. Describe how to perform a kernel upgrade in Linux safely.
+Answer:
+Download or install kernel via package manager, update bootloader (GRUB), test boot with new kernel, keep old kernels as fallback, monitor logs for issues.
+
+🛠️ Tools & IT Operations
+16. How do you integrate ServiceNow with other ITSM tools or monitoring platforms?
+Answer:
+Use ServiceNow APIs, webhooks, or middleware connectors to automate ticket creation, sync asset data, or trigger workflows based on monitoring alerts.
+
+17. What are SAP transport requests and how do they manage changes across environments?
+Answer:
+Transport requests package configuration or development changes and move them across SAP environments (Dev → QA → Prod) ensuring consistency.
+
+18. Explain the use of pivot tables in Excel for analyzing IT operational data.
+Answer:
+Pivot tables summarize large datasets, allowing dynamic grouping, filtering, and calculation (sums, averages) without altering source data.
+
+19. How do you create macros in Excel to automate repetitive tasks?
+Answer:
+Use Excel’s macro recorder or write VBA scripts to automate tasks like formatting, calculations, or data import/export.
+
+20. What are best practices for documenting IT processes in ServiceNow?
+Answer:
+Use clear, step-by-step instructions, attach screenshots, link related knowledge articles, and keep documentation up to date for consistency.
+
+Cross-topic / Scenario-based
+21. How do you handle cross-platform user identity management between Windows AD, Azure AD, and Linux systems?
+Answer:
+Implement centralized identity management with AD/Azure AD synced to Linux via LDAP or SSSD. Use tools like Azure AD Domain Services or identity brokers.
+
+22. Describe a process to automate patch deployment across Windows and Linux devices using SCCM and shell scripts.
+Answer:
+SCCM handles Windows patch deployment. For Linux, create scripts using yum or apt to patch systems, deploy via SCCM packages or configuration management tools like Ansible.
+
+23. How would you design a secure multi-tenant environment in Microsoft 365 for different business units?
+Answer:
+Use separate security groups, Conditional Access policies, RBAC, and data loss prevention policies scoped per tenant or OU to isolate resources and data.
+
+24. What steps do you take to ensure compliance with GDPR using Microsoft 365 tools?
+Answer:
+Enable data classification, DLP policies, retention labels, audit logs, and user access reviews. Use Compliance Manager and conduct regular data protection assessments.
+
+25. How do you analyze and remediate a security breach involving compromised user accounts across Azure AD and Linux servers?
+Answer:
+Identify suspicious activities via Azure AD Identity Protection and Linux audit logs. Disable compromised accounts, reset credentials, review access logs, patch vulnerabilities, and enable MFA.

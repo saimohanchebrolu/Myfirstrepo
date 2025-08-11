@@ -1,0 +1,143 @@
+
+🟢 Basic Level (Questions 1-35 approx.)
+🖥️ End User Computing & Device Management
+1. What is Microsoft Intune?
+Answer:
+Microsoft Intune is a cloud-based service for managing mobile devices and applications. It helps organizations ensure devices comply with security policies, deploy apps, and remotely wipe or configure devices, supporting Bring Your Own Device (BYOD) and corporate-owned devices.
+
+2. How do you enroll devices in Intune?
+Answer:
+Devices can be enrolled via the Intune Company Portal app, automatic enrollment using Azure AD join, or via bulk provisioning for Windows devices. Enrollment registers devices with Intune, enabling policy management.
+
+3. What platforms does Intune support?
+Answer:
+Intune supports Windows, macOS, iOS, Android, and Linux (with limited capabilities).
+
+4. What is device compliance in Intune?
+Answer:
+Device compliance refers to whether a device meets the security policies defined by the organization (e.g., passcode requirements, encryption, OS version). Non-compliant devices can be blocked from accessing corporate resources.
+
+5. How do you deploy applications via Intune?
+Answer:
+You create an app package in the Intune portal, define deployment settings and requirements, assign the app to user or device groups, and Intune pushes the app to enrolled devices.
+
+6. Explain conditional access in Intune.
+Answer:
+Conditional Access uses Azure AD policies to control access to apps and data based on device compliance, location, user risk, and more. For example, only compliant devices can access Exchange Online.
+
+7. What is SCCM and how does it differ from Intune?
+Answer:
+System Center Configuration Manager (SCCM) is an on-premises tool for managing Windows devices with rich control over OS deployment and software updates. Intune is cloud-based, focused on mobile and remote management, with less granular control but easier cloud integration.
+
+8. How do you create an application deployment in SCCM?
+Answer:
+In SCCM console, create an application, specify installation commands, distribute the content to distribution points, then deploy the app to device collections.
+
+9. What are collections in SCCM?
+Answer:
+Collections are groups of devices or users that SCCM manages as a unit for software deployment, updates, or configurations.
+
+10. How do you troubleshoot SCCM client issues?
+Answer:
+Check client logs (like ClientIDManagerStartup.log), ensure client services are running, verify network connectivity, and repair or reinstall the SCCM client if needed.
+
+11. What is the role of Distribution Points in SCCM?
+Answer:
+Distribution Points store content like software packages and updates, making them available locally to clients to reduce WAN bandwidth usage.
+
+12. Describe Windows Update options and how they integrate with SCCM.
+Answer:
+Windows Update can be managed via WSUS or SCCM Software Update Point, allowing administrators to approve, schedule, and deploy updates centrally.
+
+13. How do you manage Windows OS upgrades using SCCM?
+Answer:
+Create and deploy an upgrade task sequence, monitor deployment, and manage rollback or servicing options.
+
+14. What is the difference between Windows 10 and Windows 11?
+Answer:
+Windows 11 has a redesigned UI, improved security features, requires TPM 2.0, and better supports hybrid work. Windows 10 is more widely used and supports older hardware.
+
+15. How do you troubleshoot slow Windows boot times?
+Answer:
+Use tools like Event Viewer, msconfig, and Task Manager to check startup programs, drivers, services, and event logs.
+
+16. What is Active Directory (AD)?
+Answer:
+AD is a Microsoft directory service that stores information about users, computers, and resources in a network, providing authentication and authorization.
+
+17. Explain the difference between a domain and a workgroup.
+Answer:
+A domain is a centralized, secure network managed by AD, while a workgroup is a peer-to-peer network without centralized control.
+
+18. What are Organizational Units (OUs)?
+Answer:
+OUs are containers within AD used to organize objects and apply Group Policies.
+
+19. How does Group Policy work?
+Answer:
+Group Policy enforces settings across users or computers based on AD objects like OUs, enabling centralized configuration.
+
+20. What is a Group Policy Object (GPO)?
+Answer:
+A GPO is a set of policies applied to AD containers to manage settings like security, software deployment, or desktop configuration.
+
+21. How do you enforce password policies with GPO?
+Answer:
+Configure password policies under Computer Configuration > Policies > Windows Settings > Security Settings > Account Policies > Password Policy in GPMC.
+
+22. What is Azure Active Directory (Entra ID)?
+Answer:
+Azure AD is Microsoft’s cloud identity and access management service used to manage users and apps in the cloud.
+
+23. How does Azure AD differ from on-premises AD?
+Answer:
+Azure AD is designed for cloud apps, using modern protocols like OAuth, while on-prem AD manages traditional domain-joined devices.
+
+24. What is Hybrid Azure AD Join?
+Answer:
+A device is joined to both on-prem AD and registered with Azure AD, allowing both cloud and on-prem resources to be accessed securely.
+
+25. Explain role-based access control (RBAC) in Azure AD.
+Answer:
+RBAC controls permissions by assigning roles to users/groups, limiting access based on least privilege.
+
+26. What is an Azure AD Conditional Access policy?
+Answer:
+Policies that define requirements for accessing resources, such as device compliance, user location, or MFA enforcement.
+
+27. How do you troubleshoot user login issues in AD and Azure AD?
+Answer:
+Check event logs, account lockout status, password expiration, network connectivity, and MFA configurations.
+
+28. What are common replication issues in AD and how do you resolve them?
+Answer:
+Replication failures can be caused by DNS problems, time sync issues, or network errors. Use tools like repadmin and check event logs to diagnose.
+
+29. What tools do you use for managing and troubleshooting GPOs?
+Answer:
+Group Policy Management Console (GPMC), gpresult, RSOP.msc, and Event Viewer.
+
+30. How do you block USB devices using Group Policy?
+Answer:
+Use GPO to set restrictions under Computer Configuration > Policies > Administrative Templates > System > Removable Storage Access.
+
+☁️ Cloud & Identity Management
+31. What services are included in Microsoft 365?
+Answer:
+Office apps (Word, Excel), Exchange Online, SharePoint, Teams, OneDrive, and security services.
+
+32. How do you create and manage users in Microsoft 365?
+Answer:
+Via Microsoft 365 Admin Center or PowerShell, create users, assign licenses, and configure settings.
+
+33. How do you assign licenses in Microsoft 365?
+Answer:
+Assign manually via Admin Center or automate using PowerShell with commands like Set-MsolUserLicense.
+
+34. What is Exchange Online?
+Answer:
+Cloud-based email service part of Microsoft 365 offering mailbox, calendaring, and contacts.
+
+35. How do you create a shared mailbox in Exchange Online?
+Answer:
+Use Exchange Admin Center or PowerShell with New-Mailbox -Shared.

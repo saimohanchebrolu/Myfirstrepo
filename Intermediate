@@ -1,0 +1,171 @@
+🟡 Intermediate Level (Questions 36-75 approx.)
+🖥️ End User Computing & Device Management
+36. How do you configure mailbox forwarding in Exchange Online?
+Answer:
+Use the Exchange Admin Center or PowerShell (Set-Mailbox -Identity user -ForwardingSMTPAddress target@domain.com). You can forward all or only certain emails, with options to keep copies in the original mailbox.
+
+37. What is Exchange Online Protection (EOP)?
+Answer:
+EOP is Microsoft’s cloud-based email filtering service that protects against spam, malware, and phishing attacks for Exchange Online.
+
+38. How do you configure spam filtering in Exchange Online?
+Answer:
+Via Security & Compliance Center or Exchange Admin Center, set up spam filter policies specifying actions on detected spam (e.g., quarantine, delete).
+
+39. How do you set up multi-factor authentication (MFA) for Microsoft 365 users?
+Answer:
+Enable MFA per user in the Microsoft 365 Admin Center or enforce it with Conditional Access policies in Azure AD.
+
+40. How do you recover deleted emails in Exchange Online?
+Answer:
+Deleted emails move to the Deleted Items folder, then to Recoverable Items. Use Outlook or OWA “Recover Deleted Items” feature or PowerShell for recovery.
+
+41. What is the difference between a distribution group and a Microsoft 365 group?
+Answer:
+Distribution groups only manage email distribution lists. Microsoft 365 groups provide collaboration features including shared mailbox, calendar, SharePoint site, and Teams.
+
+42. How do you troubleshoot mail flow issues in Exchange Online?
+Answer:
+Check message trace in Exchange Admin Center, verify MX records, SPF/DKIM/DMARC settings, and use PowerShell to test connectivity.
+
+43. What is the Microsoft 365 Admin Center?
+Answer:
+A web portal for managing users, licenses, services, billing, and reports within Microsoft 365.
+
+44. How do you audit user activities in Microsoft 365?
+Answer:
+Enable audit logs in the Security & Compliance Center and query user actions like mailbox access, file modifications, etc.
+
+45. How do you implement data loss prevention (DLP) in Microsoft 365?
+Answer:
+Create DLP policies targeting sensitive info types (credit cards, PII) to prevent sharing outside organization or sending via email.
+
+🐧 Linux Administration
+46. How do you list running processes in Linux?
+Answer:
+Use commands like ps aux, top, or htop to view running processes.
+
+47. What commands help you monitor memory usage?
+Answer:
+free -m, vmstat, top, or htop display memory and swap usage.
+
+48. How do you check CPU usage for processes?
+Answer:
+top or htop show CPU usage per process; ps can filter and sort by CPU usage.
+
+49. How do you kill a stuck process?
+Answer:
+Use kill PID or kill -9 PID to force stop a process (PID = process ID).
+
+50. What is top and how is it useful?
+Answer:
+top is a real-time task manager showing CPU, memory, and process usage, helping identify resource hogs.
+
+51. How do you use grep to filter logs?
+Answer:
+grep 'search_string' filename finds lines matching a pattern. Options like -i for case-insensitive, -r for recursive search.
+
+52. Explain how awk works with text files.
+Answer:
+awk processes text line-by-line, splitting into fields. You can filter, transform, or calculate data by specifying patterns and actions.
+
+53. How do you parse logs to extract error messages?
+Answer:
+Use grep 'error' logfile, or combine with awk to extract timestamp and error type.
+
+54. How do you add a new user in Linux?
+Answer:
+sudo useradd username creates user; passwd username sets the password.
+
+55. How do you change file permissions?
+Answer:
+Use chmod with symbolic (e.g., chmod u+x file) or numeric mode (e.g., chmod 755 file).
+
+56. What is the difference between symbolic and hard links?
+Answer:
+Hard links point directly to file data (inode); symbolic links are shortcuts that point to file paths.
+
+57. How do you check disk space usage?
+Answer:
+df -h for disk usage; du -sh directory/ for directory size.
+
+58. How do you mount and unmount a filesystem?
+Answer:
+mount /dev/sdXY /mnt/point to mount; umount /mnt/point to unmount.
+
+59. How do you create and schedule cron jobs?
+Answer:
+Edit crontab with crontab -e; use format * * * * * command for scheduling.
+
+60. Write a simple shell script to monitor disk space and send an alert.
+Answer:
+
+bash
+Copy
+Edit
+#!/bin/bash
+THRESHOLD=80
+USAGE=$(df / | tail -1 | awk '{print $5}' | sed 's/%//')
+if [ $USAGE -gt $THRESHOLD ]; then
+  echo "Disk space is above $THRESHOLD%" | mail -s "Disk Alert" admin@company.com
+fi
+61. How do you find the size of a directory?
+Answer:
+du -sh /path/to/directory
+
+62. What are environment variables and how do you set them?
+Answer:
+Variables that store system/user settings; set with export VAR=value.
+
+63. How do you check available memory without swap?
+Answer:
+free -m shows swap separately; subtract swap to get physical memory.
+
+64. How do you troubleshoot a Linux server that is running slow?
+Answer:
+Check CPU, memory, I/O using top, iotop, check logs for errors.
+
+65. Explain how to redirect both stdout and stderr to a file.
+Answer:
+command > output.log 2>&1 redirects both standard output and errors.
+
+66. What is the difference between sh and bash?
+Answer:
+sh is the original shell (Bourne shell), while bash (Bourne Again Shell) is more feature-rich.
+
+🛠️ Tools & IT Operations
+67. What is ServiceNow used for?
+Answer:
+IT service management platform for incident, problem, change, and asset management.
+
+68. How do you create and update an incident ticket in ServiceNow?
+Answer:
+Via the ServiceNow UI or API: fill in details like caller, category, description; update status as needed.
+
+69. What is a change request in ServiceNow?
+Answer:
+Formal request to modify IT infrastructure, tracked to ensure proper approval and implementation.
+
+70. How do you automate workflows in ServiceNow?
+Answer:
+Use Flow Designer or Business Rules to automate actions based on triggers.
+
+71. What is SAP and how is it used in procurement?
+Answer:
+SAP is an ERP system. Procurement uses SAP to manage purchase orders, suppliers, and goods receipts.
+
+72. Explain the procure-to-pay process in SAP.
+Answer:
+Process from requisition to purchase order, goods receipt, invoice receipt, and payment.
+
+73. How do you create a purchase order in SAP?
+Answer:
+Use transaction ME21N, fill vendor, items, quantities, and submit.
+
+74. How do you troubleshoot purchase order discrepancies?
+Answer:
+Compare PO, goods receipt, and invoice; check SAP error messages.
+
+75. What are some common SAP modules you have worked with?
+Answer:
+Modules like MM (Materials Management), SD (Sales & Distribution), FI (Finance), CO (Controlling).

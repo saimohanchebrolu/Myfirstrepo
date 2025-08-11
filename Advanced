@@ -1,0 +1,113 @@
+
+🖥️ End User Computing & Device Management
+76. How would you troubleshoot a failed Intune device enrollment?
+Answer:
+Check device logs, ensure correct MDM policies, verify user licenses, network access, time/date settings, and review Intune portal errors. Use Company Portal app logs and Intune diagnostic reports.
+
+77. How does SCCM handle patch management across multiple remote sites?
+Answer:
+SCCM uses Distribution Points and BranchCache for local content delivery, controlling update deployment rings and throttling bandwidth. Reports monitor update compliance.
+
+78. Explain how to deploy Windows Autopilot using Intune.
+Answer:
+Register device hardware IDs with Autopilot service, create deployment profiles in Intune, assign profiles to devices, and upon first boot, devices auto-enroll and configure per profile.
+
+79. How do you manage driver packages in SCCM for hardware compatibility?
+Answer:
+Import drivers into SCCM, categorize by model, create driver packages, and include in task sequences for OS deployment, ensuring latest drivers are used.
+
+80. What are Group Policy Preferences and how do they differ from Policies?
+Answer:
+Preferences allow configuring settings that users can change later (e.g., mapped drives), while policies enforce strict settings that users cannot override.
+
+81. How do you secure Active Directory from common attacks?
+Answer:
+Implement least privilege, use strong passwords, monitor logs, enable MFA, patch regularly, restrict admin accounts, enable auditing, and protect against Kerberos attacks.
+
+82. Explain the concept of SID history in AD migrations.
+Answer:
+SID History stores previous security identifiers to maintain access during domain migrations, preventing access issues.
+
+83. What is the significance of FSMO roles in Active Directory?
+Answer:
+Flexible Single Master Operations (FSMO) roles ensure consistency for certain operations, like schema updates, RID pools, and domain naming.
+
+84. How do you transfer FSMO roles safely?
+Answer:
+Using Active Directory Users and Computers, NTDSUtil, or PowerShell, roles are transferred to another domain controller gracefully.
+
+85. How does Azure AD Identity Protection help secure users?
+Answer:
+It detects suspicious sign-ins, compromised accounts, risky users, and offers automated remediation and alerts.
+
+86. What is Azure AD Connect and how does it work?
+Answer:
+It synchronizes on-premises AD objects to Azure AD, enabling hybrid identity scenarios like single sign-on and device registration.
+
+87. How do you implement Just-In-Time (JIT) access in Azure AD?
+Answer:
+Use Azure AD Privileged Identity Management (PIM) to grant time-limited admin access with approval workflows.
+
+88. How do you manage role-based access control (RBAC) for Azure resources?
+Answer:
+Assign built-in or custom roles to users/groups at resource, resource group, or subscription scope.
+
+☁️ Cloud & Identity Management
+89. How do you migrate mailboxes from on-prem Exchange to Exchange Online?
+Answer:
+Using hybrid migration, cutover, or staged migration methods; involves setting up Exchange Hybrid, synchronizing users, and moving mailboxes gradually.
+
+90. What are the key components of Microsoft 365 security?
+Answer:
+Conditional Access, MFA, DLP, Secure Score, Defender for Office 365, and Compliance Manager.
+
+91. How do you automate Microsoft 365 administration using PowerShell?
+Answer:
+Connect using modules like MSOnline, ExchangeOnlineManagement; script user, license, and security management tasks.
+
+92. What are Service Principals in Azure AD?
+Answer:
+They are identities for applications/services to authenticate and access resources securely without user context.
+
+93. How do you integrate on-prem AD with Azure AD for SSO?
+Answer:
+Implement Azure AD Connect with Pass-Through Authentication or Federation with ADFS.
+
+🐧 Linux Administration
+94. Explain how systemd works and how to manage services.
+Answer:
+systemd is an init system managing services/processes. Use systemctl start|stop|restart|status servicename to control services.
+
+95. How do you analyze system boot performance?
+Answer:
+Use systemd-analyze and systemd-analyze blame to see startup times and delays.
+
+96. What is SELinux and how do you manage it?
+Answer:
+SELinux enforces mandatory access control policies. Manage with getenforce, setenforce, and configure contexts with semanage.
+
+97. How do you automate user creation with custom profiles in Linux?
+Answer:
+Create useradd skeleton directories or scripts that copy default configs and set permissions during user creation.
+
+98. What are Linux namespaces and cgroups?
+Answer:
+Namespaces isolate process resources; cgroups control resource allocation (CPU, memory) for process groups, used in containers.
+
+99. How do you secure SSH access on Linux servers?
+Answer:
+Disable root login, use key-based authentication, change default port, enable firewall, and use fail2ban to block brute-force.
+
+100. Write a shell script that monitors system load and logs if it exceeds threshold.
+Answer:
+
+bash
+Copy
+Edit
+#!/bin/bash
+THRESHOLD=2.0
+LOAD=$(uptime | awk -F'load average:' '{ print $2 }' | cut -d',' -f1 | tr -d ' ')
+LOAD_INT=${LOAD%.*}
+if (( $(echo "$LOAD > $THRESHOLD" | bc -l) )); then
+  echo "$(date): High load detected: $LOAD" >> /var/log/load_monitor.log
+fi

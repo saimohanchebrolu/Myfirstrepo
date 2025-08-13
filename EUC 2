@@ -1,0 +1,169 @@
+81. What is FSLogix and how does it improve EUC?
+Answer:
+FSLogix is a profile container solution that redirects user profiles and Office 365 caches into a virtual hard disk (VHD) that mounts at login. It improves login times, reduces profile corruption, and supports non-persistent environments by providing a persistent user experience.
+
+82. Explain the concept of application delivery controllers (ADC).
+Answer:
+ADC is a device or software that manages and optimizes application delivery by load balancing, traffic shaping, and providing security features like SSL offloading. Citrix NetScaler and F5 BIG-IP are examples used in EUC environments to improve availability and performance.
+
+83. What are thin clients and their advantages in EUC?
+Answer:
+Thin clients are lightweight endpoints with minimal local resources, relying on servers for computing. Advantages include lower cost, easier management, enhanced security, longer device life, and reduced power consumption.
+
+84. How do you handle user data backup in VDI?
+Answer:
+Backup user data by:
+
+Redirecting user folders to network shares or cloud storage
+
+Using profile management tools to capture and store profiles separately
+
+Scheduling backups of profile containers or user data stores regularly
+
+Employing cloud backup services if applicable
+
+85. What is the difference between Citrix XenApp and XenDesktop?
+Answer:
+
+XenApp: Delivers individual applications remotely via server-based sessions (application virtualization).
+
+XenDesktop: Provides full virtual desktops with dedicated or pooled VMs.
+
+86. How do you troubleshoot slow logins in Citrix?
+Answer:
+
+Check profile load time and profile size
+
+Analyze Group Policy processing delays
+
+Monitor network latency and backend server performance
+
+Review logon scripts and startup applications
+
+Use Citrix Director or ControlUp to identify bottlenecks
+
+87. What is the importance of SSL VPN in remote access?
+Answer:
+SSL VPNs provide secure, encrypted tunnels over HTTPS, allowing remote users to securely access internal resources without requiring complex client setups. They are firewall-friendly and support broad device compatibility.
+
+88. How do you manage software licensing for Citrix environments?
+Answer:
+
+Use Citrix License Server to manage and allocate licenses
+
+Monitor license usage regularly to prevent outages
+
+Ensure licenses are compliant with Citrix terms (per user, per device, concurrent)
+
+Renew and upgrade licenses proactively
+
+89. What is the role of hyper-converged infrastructure in EUC?
+Answer:
+Hyper-converged infrastructure (HCI) combines compute, storage, and networking into a single system, simplifying management and scaling. It benefits EUC by providing high performance, easy scaling, and simplified deployment of virtual desktops.
+
+90. How do you optimize storage for VDI?
+Answer:
+
+Use SSDs or hybrid storage for fast I/O
+
+Implement deduplication and compression to save space
+
+Optimize boot and user data disks separately
+
+Employ storage caching and tiering technologies
+
+Monitor storage latency and throughput
+
+91. What is the difference between MCS and PVS in Citrix?
+Answer:
+
+MCS (Machine Creation Services): Creates and manages virtual desktops by cloning a master image and storing data on shared storage.
+
+PVS (Provisioning Services): Streams the OS image to target devices over the network, reducing storage needs but requiring network reliability.
+
+92. How do you secure VDI environments?
+Answer:
+
+Enforce strong authentication and MFA
+
+Use encryption for data in transit and at rest
+
+Limit user permissions (least privilege)
+
+Patch and update regularly
+
+Use endpoint protection and application control
+
+Monitor for anomalies and enforce network segmentation
+
+93. What are the benefits of using Windows Virtual Desktop (WVD)?
+Answer:
+
+Cloud-based managed VDI service on Azure
+
+Simplified management and scaling
+
+Integrated with Microsoft 365 and Azure security features
+
+Supports multi-session Windows 10 for cost savings
+
+Global availability and disaster recovery
+
+94. What is the significance of workspace management platforms?
+Answer:
+Workspace management platforms (like Citrix Workspace, VMware Workspace ONE) unify access to applications, desktops, and data across devices, improving user experience, simplifying administration, and enhancing security.
+
+95. How do you manage updates in a non-persistent VDI environment?
+Answer:
+
+Update the master/golden image regularly
+
+Use layering or application virtualization to patch apps separately
+
+Schedule image maintenance windows
+
+Test updates thoroughly before deployment
+
+96. What is session reliability in Citrix?
+Answer:
+Session reliability maintains user sessions during temporary network interruptions by keeping ICA sessions active and buffering inputs, improving user experience during unstable connections.
+
+97. How do you monitor user experience in EUC?
+Answer:
+Use tools that measure:
+
+Logon duration and failures
+
+Application launch times
+
+Session latency and bandwidth usage
+
+Endpoint performance metrics
+
+User feedback and session shadowing
+
+98. What is the difference between local profiles, roaming profiles, and mandatory profiles?
+Answer:
+
+Local profiles: Stored locally on each machine, not roaming with the user.
+
+Roaming profiles: Stored on a network share and loaded on any domain-joined device, providing a consistent experience.
+
+Mandatory profiles: Read-only profiles that enforce a fixed desktop environment and prevent user changes.
+
+99. How do you handle disaster recovery in EUC?
+Answer:
+
+Regular backups of images, profiles, and configurations
+
+Redundant infrastructure across data centers or cloud regions
+
+Documented recovery procedures and regular drills
+
+Use cloud failover options for quick restoration
+
+Monitor and test DR plans frequently
+
+100. What is Zero Trust security in the context of EUC?
+Answer:
+Zero Trust means “never trust, always verify.” Every access request is authenticated, authorized, and encrypted regardless of network location. It minimizes insider threats and improves overall security posture by enforcing strict identity, device compliance, and access controls.
